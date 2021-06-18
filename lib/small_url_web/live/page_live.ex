@@ -7,22 +7,15 @@ defmodule SmallUrlWeb.PageLive do
   end
 
   @impl true
-  def handle_event("suggest", %{"q" => query}, socket) do
-    {:noreply, assign(socket, results: search(query), query: query)}
+  def handle_event("validate", %{"q" => query}, socket) do
+    
   end
 
-  @impl true
-  def handle_event("search", %{"q" => query}, socket) do
-    case search(query) do
-      %{^query => vsn} ->
-        {:noreply, redirect(socket, external: "https://hexdocs.pm/#{query}/#{vsn}")}
+  defp validate_url(url), do: String.match?(url, @url_regex)
 
-      _ ->
-        {:noreply,
-         socket
-         |> put_flash(:error, "No dependencies found matching \"#{query}\"")
-         |> assign(results: %{}, query: query)}
-    end
+  @impl true
+  def handle_event("shorten_url", %{"q" => query}, socket) do
+    {:noreply, assign(socket, %{})}
   end
 
   defp search(query) do

@@ -1,11 +1,20 @@
-<section class="phx-hero">
-  <form phx-change="suggest" phx-submit="search">
-    <input type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off"/>
-    <datalist id="results">
-      <%= for {app, _vsn} <- @results do %>
-        <option value="<%= app %>"><%= app %></option>
-      <% end %>
-    </datalist>
-    <button type="submit" phx-disable-with="Searching...">Go to Hexdocs</button>
+<section class="mx-auto px-4">
+  <div class="-ml-14 flex h-20 content-center place-content-center">
+    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+      <span class="block mb-4">Small URL</span>
+      <span class="block text-indigo-600">Free and Opensource URL Shortener</span>
+    </h2>
+  </div>
+  
+  <div class="m-10 h-14 content-center place-content-center">
+    <form phx-change="validate" phx-submit="shorten_url">
+    <input class="w-96 p-3 rounded-md bg-gray-200 focus:outline-none focus:border-gray-700" type="text" name="q" value="<%= @query %>" placeholder="Enter link here" autocomplete="off"/>
+    <button class="p-3 shadow-md rounded-md bg-purple-700 text-white font-bold hover:bg-indigo-700 focus:outline-none" type="submit" phx-disable-with="Generating...">Shorten link</button>
   </form>
+  </div>
+  <div class="w-full mt-2 h-0.5 bg-gray-100"></div>
+
+  <div class="m-10 h-14 content-center place-content-center divide-solid divide-gray-300">
+    <%= live_component(SmallUrlWeb.ShortLinkItemComponent) %>
+  </div>
 </section>

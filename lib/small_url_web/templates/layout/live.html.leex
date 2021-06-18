@@ -1,4 +1,4 @@
-<main role="main" class="container">
+<main role="main" class=" flex flex-col min-h-screen h-auto flex flex-wrap place-content-center content-center">
   <p class="alert alert-info" role="alert"
     phx-click="lv:clear-flash"
     phx-value-key="info"><%= live_flash(@flash, :info) %></p>
@@ -9,3 +9,6 @@
 
   <%= @inner_content %>
 </main>
+<footer>
+    <%= render "footer.html", assigns %>
+</footer>
