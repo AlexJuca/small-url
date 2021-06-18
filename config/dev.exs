@@ -25,7 +25,7 @@ config :small_url, SmallUrlWeb.Endpoint,
       "node_modules/webpack/bin/webpack.js",
       "--mode",
       "development",
-      "--watch-stdin",
+      "--watch-options-stdin",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
