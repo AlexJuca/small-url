@@ -21,7 +21,7 @@ defmodule SmallUrlWeb.Router do
     get "/links/:id", UrlController, :get
   end
 
-  scope "/", SmallUrlWeb do
+  scope "/url", SmallUrlWeb do
     pipe_through :browser
 
     get "/:id", UrlController, :forward
@@ -31,6 +31,7 @@ defmodule SmallUrlWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/qr", PageLive, :qr
   end
 
   # Other scopes may use custom stacks.
