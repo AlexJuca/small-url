@@ -32,4 +32,6 @@ defmodule SmallUrlWeb.PageLive do
       {:error, %Ecto.Changeset{}} -> {:noreply, put_flash(socket, :error, "Error")}
     end
   end
+
+  def handle_params(_params, _url, socket), do: {:noreply, socket}
 end
