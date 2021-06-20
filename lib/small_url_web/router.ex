@@ -24,6 +24,12 @@ defmodule SmallUrlWeb.Router do
   scope "/", SmallUrlWeb do
     pipe_through :browser
 
+    get "/:id", UrlController, :forward
+  end
+
+  scope "/", SmallUrlWeb do
+    pipe_through :browser
+
     live "/", PageLive, :index
   end
 
