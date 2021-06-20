@@ -1,5 +1,6 @@
 defmodule SmallUrlWeb.UrlController do
     use SmallUrlWeb, :controller
+    alias SmallUrl.Links
 
     @url %{}
 
@@ -28,5 +29,18 @@ defmodule SmallUrlWeb.UrlController do
                 |> send_resp(200, id)
                 |> halt() 
         end
+    end
+
+    def forward(conn, %{"id" => id} = params) do
+        shortlink = Links.get_short_links_by_key(id)
+
+        case shortlink do
+            nil -> conn
+                |> send_resp(404, "Not found")
+                |> halt()
+            shortlink -> conn
+                |> redirect(external: Map.get(shortlink, :url))
+        end
+        
     end
 end
