@@ -1,7 +1,7 @@
 <section class="mx-auto px-4">
-  <div class="-ml-14 flex h-20 content-center place-content-center">
+  <div class="ml-8 flex h-20 py-20 mb-16 content-center place-content-center">
     <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-      <span class="block mb-4">Small URL</span>
+      <span class="block mb-4">Small-URL</span>
       <span class="block text-indigo-600">Free and Opensource URL Shortener</span>
     </h2>
   </div>
@@ -14,7 +14,7 @@
   </div>
   <div class="w-full mt-2 h-0.5 bg-gray-100"></div>
 
-  <div class="m-10 h-14 content-center place-content-center divide-solid divide-gray-300">
-    <%= live_component(SmallUrlWeb.ShortLinkItemComponent) %>
+  <div class="m-10 h-auto">
+    <%= live_component(SmallUrlWeb.ShortLinkItemComponent, short_links: @short_links) %>
   </div>
 </section>

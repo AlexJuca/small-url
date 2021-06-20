@@ -1,32 +1,35 @@
 defmodule SmallUrlWeb.PageLive do
   use SmallUrlWeb, :live_view
+  alias SmallUrl.Links
+  alias SmallUrlWeb.LinkHelpers
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, query: "", results: %{})}
+    short_links = Links.list_shortlinks
+
+    {:ok, assign(socket, query: "", results: %{}, short_links: short_links)}
   end
 
   @impl true
   def handle_event("validate", %{"q" => query}, socket) do
-    
+    {:noreply, socket}
   end
 
   defp validate_url(url), do: String.match?(url, @url_regex)
 
   @impl true
   def handle_event("shorten_url", %{"q" => query}, socket) do
-    {:noreply, assign(socket, %{})}
-  end
+    key = LinkHelpers.generate_key()
+    expiration_date = LinkHelpers.generate_expiration_date()
 
-  defp search(query) do
-    if not SmallUrlWeb.Endpoint.config(:code_reloader) do
-      raise "action disabled when not in development"
+    short_links = socket.assigns[:short_links]
+  
+    url = query
+    map = %{:url => url, :key => key, :expiration_date => expiration_date, :ip => nil}
+
+    case Links.create_short_links(map) do
+      {:ok, shortened_link} -> {:noreply, assign(socket, :short_links, [shortened_link | short_links])}
+      {:error, %Ecto.Changeset{}} -> {:noreply, put_flash(socket, :error, "Error")}
     end
-
-    for {app, desc, vsn} <- Application.started_applications(),
-        app = to_string(app),
-        String.starts_with?(app, query) and not List.starts_with?(desc, ~c"ERTS"),
-        into: %{},
-        do: {app, vsn}
   end
 end
