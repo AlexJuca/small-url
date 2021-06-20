@@ -90,6 +90,9 @@ defmodule SmallUrlWeb do
       import SmallUrlWeb.ErrorHelpers
       import SmallUrlWeb.Gettext
       alias SmallUrlWeb.Router.Helpers, as: Routes
+
+      # Custom Helpers
+      import SmallUrlWeb.Helpers
     end
   end
 
