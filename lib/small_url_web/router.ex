@@ -18,10 +18,9 @@ defmodule SmallUrlWeb.Router do
     pipe_through :api
 
     post "/links/new", UrlController, :new
-    get "/links/:id", UrlController, :get
   end
 
-  scope "/url", SmallUrlWeb do
+  scope "/", SmallUrlWeb do
     pipe_through :browser
 
     get "/:id", UrlController, :forward
