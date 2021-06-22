@@ -8,14 +8,14 @@ defmodule SmallUrlWeb.ShortLinkItemComponent do
         ~L"""
         <div class="space-y-4">
             <%= for link <- @short_links do %>
-                <div class="h-14 w-full block">
+                <div id="link-<%= link.id %>" class="h-14 w-full block">
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    <span class="w-8 ml-6 inline-flex"><p class=""><%= "#{String.slice(link.url, 0, 30)}..." %></p></span>
-                    <span class="w-20 ml-80 inline-flex"><p class="font-bold text-indigo-500"><%= link(link.key, to: "#{SmallUrlWeb.Endpoint.url()}/url/#{link.key}") %></p></span>
-                    <span class="ml-4 inline-flex"><button class="focus:outline-none p-2 rounded-md bg-gray-200 text-indigo hover:shadow-md" type="submit">Copy</button></span>
+                    <span class="w-8 ml-6 inline-flex"><p class=""><%= slice_original_url(link.url) %></p></span>
+                    <span class="w-20 ml-80 inline-flex"><p class="text-blue-500"><%= link(link.key, to: Routes.url_path(@socket, :forward, link.key)) %></p></span>
+                    <span class="ml-4 inline-flex"><button class="rounded-md border border-solid shadow-sm px-4 py-2 bg-white text-base font-medium text-blue-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" type="submit">Copy</button></span>
                     <span class="ml-4 inline-flex">
                         <%= live_patch to: Routes.page_path(@socket, :qr),
-                            class: "button button-outlined-gray whitespace-nowrap" 
+                            class: "button button-outlined-gray whitespace-nowrap"
                         do %>
                             <i class="ri-qr-code-line cursor-pointer"></i>
                         <% end %>
