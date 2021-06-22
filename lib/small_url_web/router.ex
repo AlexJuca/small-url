@@ -30,7 +30,7 @@ defmodule SmallUrlWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
-    live "/qr", PageLive, :qr
+    live "/qr/view", PageLive, :qr
   end
 
   # Other scopes may use custom stacks.
