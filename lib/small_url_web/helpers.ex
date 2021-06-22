@@ -31,4 +31,6 @@ defmodule SmallUrlWeb.Helpers do
     attrs = Keyword.update(attrs, :class, icon_class, fn class -> "#{icon_class} #{class}" end)
     content_tag(:i, "", attrs)
   end
+
+  def slice_original_url(url), do: "#{String.slice(url, 0, 30)}..."
 end
