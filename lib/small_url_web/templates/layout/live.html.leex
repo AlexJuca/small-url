@@ -1,12 +1,4 @@
-<main role="main" class="flex flex-col min-h-screen h-auto flex flex-wrap place-content-center content-center">
-  <p class="alert alert-info" role="alert"
-    phx-click="lv:clear-flash"
-    phx-value-key="info"><%= live_flash(@flash, :info) %></p>
-
-  <p class="alert alert-danger" role="alert"
-    phx-click="lv:clear-flash"
-    phx-value-key="error"><%= live_flash(@flash, :error) %></p>
-
+<main role="main" class="flex flex-col min-h-screen h-auto flex-wrap content-center">
   <%= @inner_content %>
 </main>
 <footer>
