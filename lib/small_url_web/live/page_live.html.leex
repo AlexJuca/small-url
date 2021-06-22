@@ -1,6 +1,7 @@
 <section>
-    <div class="mt-10 bg-indigo-100 p-10 rounded-md">
+    <div class="mt-20 bg-indigo-100 p-10 rounded-md">
       <div class="ml-8 flex h-20 py-20 mb-16 content-center place-content-center">
+      <span class="text-indigo-500 text-xl"><%= remix_icon("links-line") %></span>
       <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         <span class="block mb-4">Small URL</span>
         <span class="block text-indigo-600">Free and Opensource URL Shortener</span>
@@ -19,12 +20,16 @@
       </div>
       <form phx-change="validate" phx-submit="shorten_url">
         <input class="w-96 p-3 rounded-md bg-white focus:outline-none focus:border-gray-700" type="text" name="q" value="<%= @query %>" placeholder="Enter link here" autocomplete="off"/>
-        <button class="p-3 shadow-md rounded-md bg-purple-700 text-white font-bold hover:bg-indigo-700 focus:outline-none" type="submit" phx-disable-with="Generating...">Shorten link</button>
+        <button class="w-60 p-3 shadow-md rounded-md bg-purple-700 text-white font-bold hover:bg-indigo-700 focus:outline-none" type="submit" phx-disable-with="Generating...">Shorten</button>
       </form>
     </div>
   </div>
 
   <div class="m-10 h-auto">
-    <%= live_component(SmallUrlWeb.ShortLinkItemComponent, short_links: @short_links, live_action: @live_action) %>
+    <%= if Enum.count(@short_links) != 0 do %>
+      <%= live_component(SmallUrlWeb.ShortLinkItemComponent, short_links: @short_links, live_action: @live_action) %>
+    <% else %>
+      <p class="text-center text-gray-500">No Short links have been created yet </p>
+    <% end %>
   </div>
 </section>

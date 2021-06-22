@@ -7,7 +7,6 @@ defmodule SmallUrlWeb.PageLive do
   def mount(_params, _session, socket) do
     # TODO: Store session key for each client, than load 10 shortlinks by client_key
     short_links = Links.list_shortlinks
-
     {:ok, assign(socket, query: "", results: %{}, short_links: short_links)}
   end
 
