@@ -1,3 +1,5 @@
+import copy from 'copy-to-clipboard';
+
 const ShortLink = {
     mounted() {
         console.log("has been mounted");
@@ -34,9 +36,11 @@ function copyURLToClipboard(hook, event) {
     const shortLinkItem = event.target;
     if (shortLinkItem) {
         const URL = shortLinkItem.getAttribute("data-element-id");
-        console.log(URL);
+        if (URL) {
+            copy(URL);
+        }
+        
     }
-    
 }
 
 function cancelEvent(event) {
