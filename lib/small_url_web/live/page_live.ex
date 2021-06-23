@@ -6,7 +6,7 @@ defmodule SmallUrlWeb.PageLive do
   @impl true
   def mount(_params, _session, socket) do
     # TODO: Store session key for each client, than load 10 shortlinks by client_key
-    short_links = Links.list_shortlinks
+    short_links = Links.list_shortlinks()
     {:ok, assign(socket, query: "", results: %{}, short_links: short_links)}
   end
 
@@ -23,13 +23,16 @@ defmodule SmallUrlWeb.PageLive do
     expiration_date = LinkHelpers.generate_expiration_date()
 
     short_links = socket.assigns[:short_links]
-  
+
     url = query
     map = %{:url => url, :key => key, :expiration_date => expiration_date, :ip => nil}
 
     case Links.create_short_links(map) do
-      {:ok, shortened_link} -> {:noreply, assign(socket, :short_links, [shortened_link | short_links])}
-      {:error, %Ecto.Changeset{}} -> {:noreply, put_flash(socket, :error, "Error")}
+      {:ok, shortened_link} ->
+        {:noreply, assign(socket, :short_links, [shortened_link | short_links])}
+
+      {:error, %Ecto.Changeset{}} ->
+        {:noreply, put_flash(socket, :error, "Error")}
     end
   end
 
