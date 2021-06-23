@@ -1,6 +1,8 @@
 defmodule SmallUrlWeb.Helpers do
     import Phoenix.LiveView.Helpers
     import Phoenix.HTML.Tag
+    import Phoenix.HTML.Link
+    alias SmallUrlWeb.Router.Helpers, as: Routes
 
     @doc """
   Renders a component inside the `Livebook.ModalComponent` component.
@@ -33,4 +35,8 @@ defmodule SmallUrlWeb.Helpers do
   end
 
   def slice_original_url(url), do: "#{String.slice(url, 0, 30)}..."
+
+  def create_link(socket, link), do: link(link.key, to: Routes.url_path(socket, :forward, link.key))
+
+  def show_encoded_link(socket, link), do: Routes.url_path(socket, :forward, link.url) |> URI.decode |>String.trim_leading "/"
 end
