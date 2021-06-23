@@ -11,6 +11,5 @@ defmodule SmallUrl.Repo.Migrations.CreateShortlinks do
 
       timestamps()
     end
-
   end
 end

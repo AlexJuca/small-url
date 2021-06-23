@@ -6,8 +6,18 @@ defmodule SmallUrl.LinksTest do
   describe "shortlinks" do
     alias SmallUrl.Links.ShortLinks
 
-    @valid_attrs %{expiration_date: ~N[2010-04-17 14:00:00], ip: "some ip", key: "some key", url: "some url"}
-    @update_attrs %{expiration_date: ~N[2011-05-18 15:01:01], ip: "some updated ip", key: "some updated key", url: "some updated url"}
+    @valid_attrs %{
+      expiration_date: ~N[2010-04-17 14:00:00],
+      ip: "some ip",
+      key: "some key",
+      url: "some url"
+    }
+    @update_attrs %{
+      expiration_date: ~N[2011-05-18 15:01:01],
+      ip: "some updated ip",
+      key: "some updated key",
+      url: "some updated url"
+    }
     @invalid_attrs %{expiration_date: nil, ip: nil, key: nil, url: nil}
 
     def short_links_fixture(attrs \\ %{}) do
@@ -43,7 +53,10 @@ defmodule SmallUrl.LinksTest do
 
     test "update_short_links/2 with valid data updates the short_links" do
       short_links = short_links_fixture()
-      assert {:ok, %ShortLinks{} = short_links} = Links.update_short_links(short_links, @update_attrs)
+
+      assert {:ok, %ShortLinks{} = short_links} =
+               Links.update_short_links(short_links, @update_attrs)
+
       assert short_links.expiration_date == ~N[2011-05-18 15:01:01]
       assert short_links.ip == "some updated ip"
       assert short_links.key == "some updated key"
