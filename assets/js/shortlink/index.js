@@ -39,7 +39,6 @@ function copyURLToClipboard(hook, event) {
         if (URL) {
             copy(URL);
         }
-        
     }
 }
 
