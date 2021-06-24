@@ -1,14 +1,16 @@
 defmodule SmallUrl.Links.ShortLinks do
   use Ecto.Schema
   import Ecto.Changeset
+  alias SmallUrl.Links.Click
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  schema "shortlinks" do
+  schema "short_links" do
     field :expiration_date, :naive_datetime
     field :ip, :string
     field :key, :string
     field :url, :string
+    has_many :clicks, Click
 
     timestamps()
   end
