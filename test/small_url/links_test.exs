@@ -80,4 +80,65 @@ defmodule SmallUrl.LinksTest do
       assert %Ecto.Changeset{} = Links.change_short_links(short_links)
     end
   end
+
+  describe "clicks" do
+    alias SmallUrl.Links.Click
+
+    @valid_attrs %{click_date: "2010-04-17T14:00:00Z", key: "some key"}
+    @update_attrs %{click_date: "2011-05-18T15:01:01Z", key: "some updated key"}
+    @invalid_attrs %{click_date: nil, key: nil}
+
+    def click_fixture(attrs \\ %{}) do
+      {:ok, click} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Links.create_click()
+
+      click
+    end
+
+    test "list_clicks/0 returns all clicks" do
+      click = click_fixture()
+      assert Links.list_clicks() == [click]
+    end
+
+    test "get_click!/1 returns the click with given id" do
+      click = click_fixture()
+      assert Links.get_click!(click.id) == click
+    end
+
+    test "create_click/1 with valid data creates a click" do
+      assert {:ok, %Click{} = click} = Links.create_click(@valid_attrs)
+      assert click.click_date == DateTime.from_naive!(~N[2010-04-17T14:00:00Z], "Etc/UTC")
+      assert click.key == "some key"
+    end
+
+    test "create_click/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Links.create_click(@invalid_attrs)
+    end
+
+    test "update_click/2 with valid data updates the click" do
+      click = click_fixture()
+      assert {:ok, %Click{} = click} = Links.update_click(click, @update_attrs)
+      assert click.click_date == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
+      assert click.key == "some updated key"
+    end
+
+    test "update_click/2 with invalid data returns error changeset" do
+      click = click_fixture()
+      assert {:error, %Ecto.Changeset{}} = Links.update_click(click, @invalid_attrs)
+      assert click == Links.get_click!(click.id)
+    end
+
+    test "delete_click/1 deletes the click" do
+      click = click_fixture()
+      assert {:ok, %Click{}} = Links.delete_click(click)
+      assert_raise Ecto.NoResultsError, fn -> Links.get_click!(click.id) end
+    end
+
+    test "change_click/1 returns a click changeset" do
+      click = click_fixture()
+      assert %Ecto.Changeset{} = Links.change_click(click)
+    end
+  end
 end
