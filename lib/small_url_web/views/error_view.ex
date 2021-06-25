@@ -15,6 +15,5 @@ defmodule SmallUrlWeb.ErrorView do
   end
 
   def render("404.html", _assigns) do
-    
   end
 end

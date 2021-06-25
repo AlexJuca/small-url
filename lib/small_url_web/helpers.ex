@@ -40,10 +40,8 @@ defmodule SmallUrlWeb.Helpers do
     do: link(link.key, to: Routes.url_path(socket, :redirect_to_original_url, link.key))
 
   def show_encoded_link(socket, link) do
-    "#{SmallUrlWeb.Endpoint.url}/#{Routes.url_path(socket, :redirect_to_original_url, link.key)
-    |> URI.decode()
-    |> String.trim_leading("/")}"
+    "#{SmallUrlWeb.Endpoint.url()}/#{Routes.url_path(socket, :redirect_to_original_url, link.key) |> URI.decode() |> String.trim_leading("/")}"
   end
 
-  def id(), do: Ecto.UUID.generate
+  def id(), do: Ecto.UUID.generate()
 end

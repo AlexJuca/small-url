@@ -9,6 +9,5 @@ defmodule SmallUrl.Repo.Migrations.CreateClicks do
       add :short_links_id, references(:short_links, type: :binary_id)
       timestamps()
     end
-
   end
 end
