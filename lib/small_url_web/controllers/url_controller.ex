@@ -60,7 +60,7 @@ defmodule SmallUrlWeb.UrlController do
     shortlink = Links.get_short_links_by_key(key)
 
     case shortlink do
-      {:ok, shortlink} ->
+      shortlink ->
         conn |> gather_stats(shortlink)
 
       nil ->
