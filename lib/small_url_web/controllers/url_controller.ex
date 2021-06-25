@@ -38,7 +38,7 @@ defmodule SmallUrlWeb.UrlController do
 
   def redirect_to_original_url(conn, %{"key" => key} = params) do
     shortlink = Links.get_short_links_by_key(key)
-    
+
     case shortlink do
       nil ->
         conn
@@ -46,10 +46,9 @@ defmodule SmallUrlWeb.UrlController do
         |> render("404.html")
 
       shortlink ->
+        IO.inspect(shortlink)
 
-        IO.inspect shortlink
-
-        shortlink 
+        shortlink
         |> register_click
 
         conn
@@ -59,26 +58,39 @@ defmodule SmallUrlWeb.UrlController do
 
   def show_link_analytics(conn, %{"key" => key} = params) do
     shortlink = Links.get_short_links_by_key(key)
+
+    case shortlink do
+      {:ok, shortlink} ->
+        conn |> gather_stats(shortlink)
+
+      nil ->
+        conn
+        |> resp(404, "Not found")
+    end
+  end
+
+  def gather_stats(conn, shortlink) do
     shortlink = SmallUrl.Repo.preload(shortlink, :clicks)
     clicks = Map.get(shortlink, :clicks)
     number_of_clicks = Enum.count(clicks)
-    last_click_date = Enum.map(clicks, fn click -> Map.get(click, :click_date) end)
-      |> Enum.sort() |> Enum.at(0)
+
+    last_click_date =
+      Enum.map(clicks, fn click -> Map.get(click, :click_date) end) |> Enum.sort() |> Enum.at(0)
 
     link_info = %{
       :clicks => number_of_clicks,
       :last_click_date => last_click_date
     }
 
-    conn 
+    conn
     |> put_view(SmallUrlWeb.LinkAnalyticsView)
     |> render("analytics.json", link_info: link_info)
   end
 
   defp register_click(%ShortLinks{} = link) do
     attrs = %{
-      :key => link.key, 
-      :click_date => DateTime.utc_now |> DateTime.truncate(:second),
+      :key => link.key,
+      :click_date => DateTime.utc_now() |> DateTime.truncate(:second),
       :shortlinks_id => link.id
     }
 
