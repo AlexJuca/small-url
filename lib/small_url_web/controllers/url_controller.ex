@@ -77,9 +77,14 @@ defmodule SmallUrlWeb.UrlController do
     last_click_date =
       Enum.map(clicks, fn click -> Map.get(click, :click_date) end) |> Enum.sort() |> Enum.at(0)
 
+    clicks_from_last_30_days =
+      Links.clicks_from_last_30_days(shortlink.key)
+      |> Enum.map(fn click -> Map.get(click, :click_date) end)
+
     link_info = %{
       :clicks => number_of_clicks,
-      :last_click_date => last_click_date
+      :last_click_date => last_click_date,
+      :last_30_days => clicks_from_last_30_days
     }
 
     conn
