@@ -25,6 +25,7 @@ defmodule SmallUrlWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/:key/stats", StatsLive, :stats
     live "/qr/view", PageLive, :qr
     get "/:key", UrlController, :redirect_to_original_url
   end

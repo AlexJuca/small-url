@@ -121,6 +121,20 @@ defmodule SmallUrl.Links do
     Repo.all(Click)
   end
 
+  def clicks_from_last_30_days(key) do
+    thirty_days = 2_592_000
+    last_thirty_days = DateTime.utc_now() |> DateTime.add(-thirty_days, :second)
+
+    query =
+      from c in Click,
+        where:
+          c.key == ^key and
+            c.click_date >= datetime_add(^NaiveDateTime.utc_now(), -1, "month") and
+            c.click_date <= ^DateTime.utc_now()
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single click.
 

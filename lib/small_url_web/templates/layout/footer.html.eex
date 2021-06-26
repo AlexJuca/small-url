@@ -1,17 +1,17 @@
-<div class="p-10 bg-black">
+<div class="p-10 bg-white mt-16">
    <div class="max-w-6xl m-auto text-white flex flex-wrap justify-center">
       <div class="p-5 w-48 ">
-         <div class="text-xs uppercase text-gray-500 font-medium">Developers</div>
-         <a class="my-3 block" href="/#">API Documentation <span class="text-teal-600 text-xs p-1"></span></a></div>
+         <div class="text-xs uppercase font-bold text-black font-medium">Developers</div>
+         <a class="my-3 block text-gray-600" href="/#">API</a></div>
       <div class="p-5 w-48 ">
-         <div class="text-xs uppercase text-gray-500 font-medium">Contact us</div>
-         <a class="my-3 block" href="/#">+244 945 955 268, Rua Costa Do Sol, Corimba, Luanda <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">suporte@smarturl.co.ao <span class="text-teal-600 text-xs p-1"></span></a> 
+         <div class="text-xs uppercase text-black font-bold font-medium">Contact us</div>
+         <a class="my-3 block text-gray-600" href="/#">+244 945 955 268, Rua Costa Do Sol, Corimba, Luanda <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">suporte@smarturl.co.ao <span class="text-teal-600 text-xs p-1"></span></a> 
       </div>
    </div>
 </div>
 
-<div class="bg-indigo-500 pt-2">
-   <div class="flex place-content-center pb-5 px-3 m-auto pt-5 text-white text-sm flex-col
+<div class="bg-gray-100 pt-2">
+   <div class="flex place-content-center pb-5 px-3 m-auto pt-5 text-black text-sm flex-col
       md:flex-row max-w-6xl">
       <div class="mt-2">© Small URL Copyright 2021. All Rights Reserved.</div>
 

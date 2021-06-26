@@ -1,12 +1,12 @@
 <section>
-    <div class="mt-40 bg-indigo-100 p-10 rounded-md">
+    <div class="mt-40 bg-indigo-100 p-10 rounded-md shadow">
       <div class="-ml-14 flex h-20 py-20 mb-16 content-center place-content-center">
-      <span class="text-indigo-500 text-xl"><%= remix_icon("links-line") %></span>
-      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-        <span class="block mb-4">Small URL</span>
-        <span class="block text-indigo-600">Free and Opensource URL Shortener</span>
-      </h2>
-    </div>
+        <span class="text-indigo-500 text-xl"><%= remix_icon("links-line") %></span>
+        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          <span class="block mb-4">miniURL</span>
+          <span class="block text-indigo-600">Free and Opensource URL Shortener</span>
+        </h2>
+      </div>
     
     <div class="m-10 h-14 content-center place-content-center">
       <div class="">
@@ -19,8 +19,8 @@
           phx-value-key="error"><%= live_flash(@flash, :error) %></p>
       </div>
       <form phx-change="validate" phx-submit="shorten_url">
-        <input class="w-96 p-3 rounded-md bg-white focus:outline-none focus:border-gray-700" type="text" name="q" value="<%= @query %>" placeholder="Enter link here" autocomplete="off"/>
-        <button class="w-60 p-3 shadow-md rounded-md bg-black text-white font-bold hover:bg-indigo-700 focus:outline-none" type="submit" phx-disable-with="Generating...">Shorten</button>
+        <input class="w-96 p-3 mr-2 rounded-md bg-white focus:outline-none focus:border-gray-700" type="text" name="q" value="<%= @query %>" placeholder="Enter link here" autocomplete="off"/>
+        <button class="w-60 p-3 shadow-md rounded-md bg-indigo-500 text-white font-bold hover:bg-indigo-700 focus:outline-none" type="submit" phx-disable-with="Generating...">Shorten</button>
       </form>
     </div>
   </div>
