@@ -101,5 +101,16 @@ defmodule SmallUrlWeb.UrlController do
 
     click = Ecto.build_assoc(link, :clicks, attrs)
     Repo.insert!(click)
+    |> broadcast(:click_created)
+  end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(SmallUrl.PubSub, "click")
+  end
+
+  def broadcast({:error, _reason} = error, _event), do: error
+  def broadcast(click, event) do
+    Phoenix.PubSub.broadcast(SmallUrl.PubSub, "click", %{event: click})
+    {:ok, click}
   end
 end
