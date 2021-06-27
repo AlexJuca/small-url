@@ -1,11 +1,10 @@
 <section>
-    
-    <div class="mt-20 pt-10 w-full block">
+    <div class="mt-10 pt-10 w-full block">
         <%= link to: Routes.page_path(@socket, :index) do %>
          <i class="font-bold text-xl text-indigo-700 ri-arrow-left-line"></i>
         <%= end %>
         <h1 class="ml-10 text-black font-bold text-4xl">Short Link Analytics</h1>
-        <span class="ml-10 w-full mt-2 inline-flex mb-2"><p class="text-gray-500">See how your short link is performing</p></span>
+        <span class="ml-10 w-full mt-2 inline-flex mb-2"><p class="text-gray-500">See how your short link is performing in realtime</p></span>
     </div>
 
     <div class="mt-10 bg-white miax-w-full w-full p-10 rounded-md shadow">
@@ -19,10 +18,17 @@
             <span aria-label="Share on facebook" class="tooltip top ml-0 inline-flex"><button data-element="share-on-facebook" data-element-id='<%= show_encoded_link(@socket, @link) %>' class="rounded-md border border-solid shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" type="submit"><i class="ri-facebook-box-fill text-l"></i></button></span>
         </span>
       </div>
+    </div>
 
-      <div class="pt-10 w-full block">
+    <div class="mt-10 bg-white miax-w-full w-full p-10 rounded-md shadow">
+      <h1 class="text-black mb-5 font-bold">Analytics</h1>
+      <div class="pt-5 w-full block">
         <h1 class="text-gray-700 font-bold ">Number of clicks</h1>
         <span class="text-gray-400"><%= @link_info.clicks %></span>
+      </div>
+      <div class="pt-5 w-full block">
+        <h1 class="text-gray-700 font-bold ">Last click</h1>
+        <span class="text-gray-400"><%= format_date(@link_info.last_click_date) %></span>
       </div>
     </div>
 </section>
