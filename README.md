@@ -1,4 +1,8 @@
-Small URL is a web application for generating short links built with [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view). It currently 
+# Small URL
+ 
+ ## What is it?
+
+ It is a web application for generating short links built with [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view). It currently 
 supports the following features:
 
   * Generates Short Links of long URL's
