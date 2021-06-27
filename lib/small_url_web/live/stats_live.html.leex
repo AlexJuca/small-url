@@ -1,18 +1,20 @@
-<section>
+<section class="p-8 w-5/6">
     <div class="mt-10 pt-10 w-full block">
         <%= link to: Routes.page_path(@socket, :index) do %>
-         <i class="font-bold text-xl text-indigo-700 ri-arrow-left-line"></i>
-        <%= end %>
+         <i class="font-bold text-xl text-black ri-arrow-left-line"></i>
+        <% end %>
         <h1 class="ml-10 text-black font-bold text-4xl">Short Link Analytics</h1>
         <span class="ml-10 w-full mt-2 inline-flex mb-2"><p class="text-gray-500">See how your short link is performing in realtime</p></span>
     </div>
 
-    <div id="<%= id() %>" phx-hook="ShortLink" class="mt-10 bg-white miax-w-full w-full p-10 rounded-md shadow">
+    <div id="copy-toast" class="block content-center place-content-center invisible top-24 p-10 m-10 absolute"></div>
+
+    <div id="<%= id() %>" phx-hook="ShortLink" class="mt-10 bg-white max-w-full w-full p-10 rounded-md shadow">
       <h1 class="text-black mb-5 font-bold">Short link <span class="italic text-black"><%= @link.key %></span> is <span class="text-green-500">active</span></h1>
       <div class="w-full block">
         <span class="w-full inline-flex mb-2"><p class="text-gray-400">Copy and share the link below</p></span>
         <span class="inline-flex">
-            <input class="text-indigo-700 font-bold w-96 p-2 rounded-md bg-gray-100 focus:ring-indigo-500 focus:border-indigo-400" type="text" value="<%= show_encoded_link(@socket, @link) %>" autocomplete="off"/>
+            <input id="<%= id() %>" disabled="true" class="text-indigo-700 font-bold w-96 p-2 rounded-md bg-gray-100 focus:ring-indigo-500 focus:border-indigo-400" type="text" value="<%= show_encoded_link(@socket, @link) %>" autocomplete="off"/>
             <span aria-label="Copy URL to clipboard" class="tooltip top ml-0 inline-flex"><button data-element="copy-url-to-clipboard" data-element-id='<%= show_encoded_link(@socket, @link) %>' class="rounded-md border border-solid shadow-sm px-4 py-2 bg-indigo-700 text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm" type="submit"><i class="ri-clipboard-fill text-l"></i></button></span>
             <span aria-label="Share on Twitter" class="tooltip top ml-0 inline-flex"><button data-element="share-on-twitter" data-element-id='<%= show_encoded_link(@socket, @link) %>' class="rounded-md border border-solid shadow-sm px-4 py-2 bg-blue-400 text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" type="submit"><i class="ri-twitter-fill text-l"></i></button></span>
             <span aria-label="Share on facebook" class="tooltip top ml-0 inline-flex"><button data-element="share-on-facebook" data-element-id='<%= show_encoded_link(@socket, @link) %>' class="rounded-md border border-solid shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" type="submit"><i class="ri-facebook-box-fill text-l"></i></button></span>
