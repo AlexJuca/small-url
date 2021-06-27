@@ -1,19 +1,31 @@
 Small URL is a web application for generating short links built with [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view). It currently 
 supports the following features:
 
-  * Generates Short Links of long URL's.
+  * Generates Short Links of long URL's
 
-  * Generates QR codes of generated Short Links.
+  * View stats for Short Links in realtime
 
-  * View stats for Short Links.
+  * Share Short Link on Twitter and Facebook
+
+  * Many more features coming!
+
+## Why another short link generator?
+
+Simple really, I wanted to work on a small but useful project that I could opensource and that would help me understand the basics of the following:
+
+1. Phoenix Livew
+
+2. Phoenix.PubSub
+
+3. Phoenix.LiveComponent
+
+4. Phoenix Client-Side Hooks using Javascript
 
 ## Getting started
 
 ![Screenshot](https://github.com/AlexJuca/small-url/raw/main/.github/imgs/welcome.png)
 
-```elixir
-TODO: Add instructions to run project here
-```
+![Screenshot](https://github.com/AlexJuca/small-url/raw/main/.github/imgs/analytics.png)
 
 ## License
 
