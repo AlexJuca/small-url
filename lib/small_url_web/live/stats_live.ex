@@ -25,11 +25,12 @@ defmodule SmallUrlWeb.StatsLive do
       :last_30_days => clicks_from_last_30_days
     }
 
-    {:ok, assign(socket, %{link: link, link_info: link_info})}
+    {:ok, assign(socket, %{link: link, link_info: link_info, key: key})}
   end
 
   @impl true
-  def handle_info({:click_created, click}, %{"key" => key} = params, socket) do
+  def handle_info(map, socket) do
+    key = socket.assigns[:key]
 
     link = Links.get_short_links_by_key(key)
 
