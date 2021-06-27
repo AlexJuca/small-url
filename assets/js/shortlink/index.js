@@ -2,11 +2,6 @@ import copy from 'copy-to-clipboard';
 
 const ShortLink = {
     mounted() {
-        console.log("has been mounted");
-        this.state = {
-
-        };
-
         this.handleDocumentMouseDown = (event) => {
             handleDocumentMouseDown(this, event);
         }
@@ -21,7 +16,7 @@ const ShortLink = {
 // DOM event handlers
 
 function handleDocumentMouseDown(hook, event) {
-    // If clock targets a clickable element that awaits mouse up, keep the focus as is
+    // If click targets a clickable element that awaits mouse up, keep the focus as is
     if (event.target.closest(`a, button`)) {
         // if the Copy button is clocked, copy URL to clipboard
         if (event.target.closest(`[data-element="copy-url-to-clipboard"]`)) {
@@ -35,7 +30,7 @@ function handleDocumentMouseDown(hook, event) {
 function copyURLToClipboard(hook, event) {
     const shortLinkItem = event.target;
     if (shortLinkItem) {
-        const URL = shortLinkItem.getAttribute("data-element-id");
+        var URL = shortLinkItem.getAttribute("data-element-id");
         if (URL) {
             copy(URL);
         }
