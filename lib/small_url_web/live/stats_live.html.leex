@@ -7,7 +7,7 @@
         <span class="ml-10 w-full mt-2 inline-flex mb-2"><p class="text-gray-500">See how your short link is performing in realtime</p></span>
     </div>
 
-    <div class="mt-10 bg-white miax-w-full w-full p-10 rounded-md shadow">
+    <div id="<%= id() %>" phx-hook="ShortLink" class="mt-10 bg-white miax-w-full w-full p-10 rounded-md shadow">
       <h1 class="text-black mb-5 font-bold">Short link <span class="italic text-black"><%= @link.key %></span> is <span class="text-green-500">active</span></h1>
       <div class="w-full block">
         <span class="w-full inline-flex mb-2"><p class="text-gray-400">Copy and share the link below</p></span>
