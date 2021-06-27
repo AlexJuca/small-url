@@ -1,5 +1,6 @@
 import copy from 'copy-to-clipboard';
 import shareFacebook from 'share-facebook';
+import shareTwitter from 'share-twitter';
 
 const ShortLink = {
     mounted() {
@@ -25,17 +26,35 @@ function handleDocumentMouseDown(hook, event) {
         }
 
         if (event.target.closest(`[data-element="share-on-facebook"]`)) {
-            shareToFacebook(hook, event);
+            shareOnFacebook(hook, event);
+        }
+
+        if (event.target.closest(`[data-element="share-on-twitter"]`)) {
+            shareOnTwitter(hook, event);
         }
     }
 
     return;
 }
 
-
-function shareToFacebook(hook, event) {
+function shareOnTwitter(hook, event) {
     const item = event.target;
-    console.log(item);
+
+    if (item) {
+        const url = item.getAttribute("data-element-id");
+        console.log(url);
+        if (url) {
+            const twitterShareLink = shareTwitter({
+                text: 'Checkout my awesome shortlink',
+                url: url,
+              })
+            const newTab = window.open(twitterShareLink);
+        }
+    }
+}
+
+function shareOnFacebook(hook, event) {
+    const item = event.target;
 
     if (item) {
         const url = item.getAttribute("data-element-id");
@@ -50,8 +69,6 @@ function shareToFacebook(hook, event) {
             const newTab = window.open(facebookShareLink);
         }
     }
-
-
 }
 
 function showToast(message) {

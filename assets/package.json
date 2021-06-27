@@ -14,7 +14,8 @@
     "remixicon": "^2.5.0",
     "qrcode": "^1.4.4",
     "copy-to-clipboard": "^3.3.1",
-    "share-facebook": "^1.0.1"
+    "share-facebook": "^1.0.1",
+    "share-twitter": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
