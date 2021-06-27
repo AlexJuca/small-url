@@ -13,7 +13,7 @@ supports the following features:
 
 Simple really, I wanted to work on a small but useful project that I could opensource and that would help me understand the basics of the following:
 
-1. Phoenix Livew
+1. Phoenix Liveview
 
 2. Phoenix.PubSub
 
