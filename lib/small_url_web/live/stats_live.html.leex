@@ -32,5 +32,12 @@
         <h1 class="text-gray-700 font-bold ">Last click</h1>
         <span class="text-gray-400"><%= format_date(@link_info.last_click_date) %></span>
       </div>
+
+      <div class="pt-5 w-full block">
+        <h1 class="text-gray-700 font-bold ">Clicks in the last 30 days</h1>
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
     </div>
 </section>
