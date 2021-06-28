@@ -1,9 +1,15 @@
 import copy from 'copy-to-clipboard';
 import shareFacebook from 'share-facebook';
 import shareTwitter from 'share-twitter';
+import Chart from 'chart.js';
 
 const ShortLink = {
     mounted() {
+        
+        this.setupChart = () => {
+            showLineChart();
+        }
+
         this.handleDocumentMouseDown = (event) => {
             handleDocumentMouseDown(this, event);
         }
@@ -14,6 +20,35 @@ const ShortLink = {
         document.removeEventListener("mousedown", this.handleDocumentMouseDown);
     },
 };
+
+function showLineChart() {
+    const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+      ];
+
+      const data = {
+        labels: labels,
+        datasets: [{
+          label: 'My First dataset',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [0, 10, 5, 2, 20, 30, 45],
+        }]
+      };
+
+      const config = {
+        type: 'line',
+        data,
+        options: {}
+      };
+
+      var chart = new Chart(document.getElementById('myChart'), config);
+}
 
 // DOM event handlers
 
