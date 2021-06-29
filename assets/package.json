@@ -16,7 +16,7 @@
     "copy-to-clipboard": "^3.3.1",
     "share-facebook": "^1.0.1",
     "share-twitter": "^1.0.0",
-    "chartjs": "^0.3.24"
+    "chart.js": "^3.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
