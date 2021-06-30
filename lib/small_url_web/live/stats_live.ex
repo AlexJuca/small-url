@@ -100,8 +100,4 @@ defmodule SmallUrlWeb.StatsLive do
       Enum.frequencies(dates)
       |> Enum.map(fn f -> Map.put(%{:month => elem(f, 0)}, "clicks", elem(f, 1)) end)
   end
-
-  defp render_output(_socket, {:vega_lite_static, spec}, id) do
-    live_component(SmallUrlWeb.Output.VegaLiteStaticComponent, id: id, spec: spec)
-  end
 end
