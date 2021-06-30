@@ -86,8 +86,6 @@ defmodule SmallUrlWeb.StatsLive do
      })}
   end
 
-  defp get_click_frequencies_for_last_30_days(nil), do: [%{}]
-
   defp get_click_frequencies_for_last_30_days(link_key) do
     clicks_from_last_30_days =
       Links.clicks_from_last_30_days(link_key)
