@@ -20,9 +20,11 @@ import 'remixicon/fonts/remixicon.css';
 import QRCode from 'qrcode';
 import morphdomCallbacks from "./morphdom_callbacks";
 import ShortLink from "./shortlink";
+import VegaLite from "./vega_lite";
 
 const hooks = {
     ShortLink,
+    VegaLite,
 };
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")

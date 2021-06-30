@@ -15,7 +15,10 @@
     "qrcode": "^1.4.4",
     "copy-to-clipboard": "^3.3.1",
     "share-facebook": "^1.0.1",
-    "share-twitter": "^1.0.0"
+    "share-twitter": "^1.0.0",
+    "vega": "^5.20.2",
+    "vega-embed": "^6.18.1",
+    "vega-lite": "^5.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
