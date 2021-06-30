@@ -48,8 +48,7 @@ defmodule SmallUrl.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:ksuid, "~> 0.1.2"},
-      {:vega_lite, "~> 0.1.0"},
-      {:kino, "~> 0.2.1"}
+      {:vega_lite, "~> 0.1.0"}
     ]
   end
 
