@@ -21,7 +21,7 @@ defmodule SmallUrlWeb.StatsLive do
     link_info = %{
       :clicks => number_of_clicks,
       :last_click_date => last_click_date,
-      :last_30_days => 10
+      :last_30_days => 0
     }
 
     {:ok,
@@ -72,7 +72,7 @@ defmodule SmallUrlWeb.StatsLive do
     link_info = %{
       :clicks => number_of_clicks,
       :last_click_date => last_click_date,
-      :last_30_days => 10
+      :last_30_days => 0
     }
 
     click_frequencies = get_click_frequencies_for_last_30_days(key)
