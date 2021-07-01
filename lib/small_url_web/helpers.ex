@@ -37,7 +37,7 @@ defmodule SmallUrlWeb.Helpers do
   def slice_original_url(url), do: "#{String.slice(url, 0, 30)}..."
 
   def create_link(socket, link),
-    do: link(link.key, to: Routes.url_path(socket, :redirect_to_original_url, link.key))
+    do: link(link.key, to: Routes.short_link_path(socket, :redirect_to_original_url, link.key))
 
   def show_encoded_link(socket, link) do
     "#{SmallUrlWeb.Endpoint.url()}/#{Routes.short_link_path(socket, :redirect_to_original_url, link.key) |> URI.decode() |> String.trim_leading("/")}"

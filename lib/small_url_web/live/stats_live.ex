@@ -4,18 +4,10 @@ defmodule SmallUrlWeb.StatsLive do
   import VegaLite
   alias VegaLite, as: Vl
 
-<<<<<<< HEAD
-  @impl true
-  def mount(%{"key" => key}, _session, socket) do
-    if connected?(socket), do: SmallUrlWeb.ShortLinkController.subscribe()
-
-    link = Links.get_short_links_by_key(key)
-=======
   def mount(%{"key" => key} = params, session, socket) do
     if connected?(socket), do: :timer.send_interval(3000, self(), :update_click_frequency_graph)
 
     shortlink = Links.get_short_links_by_key(key)
->>>>>>> refs/remotes/origin/main
 
     shortlink = SmallUrl.Repo.preload(shortlink, :clicks)
     clicks = Map.get(shortlink, :clicks)
