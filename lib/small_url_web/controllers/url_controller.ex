@@ -1,11 +1,10 @@
 defmodule SmallUrlWeb.UrlController do
   use SmallUrlWeb, :controller
   alias SmallUrl.Links
-  alias SmallUrl.Links.Click
   alias SmallUrl.Links.ShortLinks
   alias SmallUrl.Repo
 
-  def redirect_to_original_url(conn, %{"key" => key} = params) do
+  def redirect_to_original_url(conn, %{"key" => key}) do
     shortlink = Links.get_short_links_by_key(key)
 
     case shortlink do
@@ -25,12 +24,11 @@ defmodule SmallUrlWeb.UrlController do
     end
   end
 
-  def show_link_analytics(conn, %{"key" => key} = params) do
-    shortlink = Links.get_short_links_by_key(key)
-
-    case shortlink do
-      shortlink ->
-        conn |> gather_stats(shortlink)
+  def show_link_analytics(conn, %{"key" => key}) do
+    case Links.get_short_links_by_key(key) do
+      %ShortLinks{} = shortlink ->
+        conn
+        |> gather_stats(shortlink)
 
       nil ->
         conn
@@ -69,6 +67,7 @@ defmodule SmallUrlWeb.UrlController do
     }
 
     click = Ecto.build_assoc(link, :clicks, attrs)
+
     Repo.insert!(click)
     |> broadcast(:click_created)
   end
@@ -78,7 +77,8 @@ defmodule SmallUrlWeb.UrlController do
   end
 
   def broadcast({:error, _reason} = error, _event), do: error
-  def broadcast(click, event) do
+
+  def broadcast(click, _) do
     Phoenix.PubSub.broadcast(SmallUrl.PubSub, "click", %{event: click})
     {:ok, click}
   end
