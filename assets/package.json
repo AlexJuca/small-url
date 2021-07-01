@@ -16,7 +16,13 @@
     "copy-to-clipboard": "^3.3.1",
     "share-facebook": "^1.0.1",
     "share-twitter": "^1.0.0",
+<<<<<<< HEAD
     "chart.js": "^3.4.0"
+=======
+    "vega": "^5.20.2",
+    "vega-embed": "^6.18.1",
+    "vega-lite": "^5.1.0"
+>>>>>>> refs/remotes/origin/main
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
