@@ -3,9 +3,8 @@ defmodule SmallUrlWeb.StatsLive do
   alias SmallUrl.Links
 
   def mount(%{"key" => key} = params, session, socket) do
-
     if connected?(socket), do: SmallUrlWeb.UrlController.subscribe()
-    
+
     link = Links.get_short_links_by_key(key)
 
     shortlink = SmallUrl.Repo.preload(link, :clicks)

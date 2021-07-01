@@ -46,9 +46,9 @@ defmodule SmallUrlWeb.Helpers do
   def id(), do: Ecto.UUID.generate()
 
   def format_date(date) do
-     case date do
+    case date do
       nil -> "Not Available"
       date -> date |> Calendar.strftime("%y-%m-%d %I:%M:%S %p")
-     end
+    end
   end
 end
