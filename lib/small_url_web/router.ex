@@ -16,8 +16,6 @@ defmodule SmallUrlWeb.Router do
 
   scope "/v1", SmallUrlWeb do
     pipe_through :api
-
-    post "/links/new", UrlController, :new
     get "/:key/analytics", UrlController, :show_link_analytics
   end
 
