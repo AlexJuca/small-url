@@ -1,4 +1,4 @@
-defmodule SmallUrlWeb.UrlController do
+defmodule SmallUrlWeb.ShortLinkController do
   use SmallUrlWeb, :controller
   alias SmallUrl.Links
   alias SmallUrl.Links.ShortLinks

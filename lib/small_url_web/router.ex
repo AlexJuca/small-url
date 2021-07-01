@@ -16,7 +16,7 @@ defmodule SmallUrlWeb.Router do
 
   scope "/v1", SmallUrlWeb do
     pipe_through :api
-    get "/:key/analytics", UrlController, :show_link_analytics
+    get "/:key/analytics", ShortLinkController, :show_link_analytics
   end
 
   scope "/", SmallUrlWeb do
@@ -25,7 +25,7 @@ defmodule SmallUrlWeb.Router do
     live "/", PageLive, :index
     live "/:key/stats", StatsLive, :stats
     live "/qr/view", PageLive, :qr
-    get "/:key", UrlController, :redirect_to_original_url
+    get "/:key", ShortLinkController, :redirect_to_original_url
   end
 
   # Other scopes may use custom stacks.
