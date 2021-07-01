@@ -2,7 +2,8 @@ defmodule SmallUrlWeb.StatsLive do
   use SmallUrlWeb, :live_view
   alias SmallUrl.Links
 
-  def mount(%{"key" => key} = params, session, socket) do
+  @impl true
+  def mount(%{"key" => key}, _session, socket) do
     if connected?(socket), do: SmallUrlWeb.ShortLinkController.subscribe()
 
     link = Links.get_short_links_by_key(key)
@@ -28,7 +29,7 @@ defmodule SmallUrlWeb.StatsLive do
   end
 
   @impl true
-  def handle_info(map, socket) do
+  def handle_info(_, socket) do
     key = socket.assigns[:key]
 
     link = Links.get_short_links_by_key(key)
