@@ -122,9 +122,6 @@ defmodule SmallUrl.Links do
   end
 
   def clicks_from_last_30_days(key) do
-    thirty_days = 2_592_000
-    last_thirty_days = DateTime.utc_now() |> DateTime.add(-thirty_days, :second)
-
     query =
       from c in Click,
         where:
