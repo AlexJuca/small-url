@@ -25,7 +25,7 @@ defmodule SmallUrlWeb.Router do
     live "/", PageLive, :index
     live "/l/:key/stats", StatsLive, :stats
     live "/l/qr/view", PageLive, :qr
-    get "l/:key", ShortLinkController, :redirect_to_original_url
+    get "/l/:key", ShortLinkController, :redirect_to_original_url
   end
 
   # Other scopes may use custom stacks.
