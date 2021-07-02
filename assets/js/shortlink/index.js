@@ -1,64 +1,10 @@
 import copy from 'copy-to-clipboard';
 import shareFacebook from 'share-facebook';
 import shareTwitter from 'share-twitter';
-import {
-    Chart,
-    ArcElement,
-    LineElement,
-    BarElement,
-    PointElement,
-    BarController,
-    BubbleController,
-    DoughnutController,
-    LineController,
-    PieController,
-    PolarAreaController,
-    RadarController,
-    ScatterController,
-    CategoryScale,
-    LinearScale,
-    LogarithmicScale,
-    RadialLinearScale,
-    TimeScale,
-    TimeSeriesScale,
-    Decimation,
-    Filler,
-    Legend,
-    Title,
-    Tooltip
-  } from 'chart.js';
-  
-  Chart.register(
-    ArcElement,
-    LineElement,
-    BarElement,
-    PointElement,
-    BarController,
-    BubbleController,
-    DoughnutController,
-    LineController,
-    PieController,
-    PolarAreaController,
-    RadarController,
-    ScatterController,
-    CategoryScale,
-    LinearScale,
-    LogarithmicScale,
-    RadialLinearScale,
-    TimeScale,
-    TimeSeriesScale,
-    Decimation,
-    Filler,
-    Legend,
-    Title,
-    Tooltip
-  );
 
 const ShortLink = {
     mounted() {
 
-        showLineChart();
-    
         this.handleDocumentMouseDown = (event) => {
             handleDocumentMouseDown(this, event);
         }
@@ -69,35 +15,6 @@ const ShortLink = {
         document.removeEventListener("mousedown", this.handleDocumentMouseDown);
     },
 };
-
-function showLineChart() {
-    const labels = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-      ];
-
-      const data = {
-        labels: labels,
-        datasets: [{
-          label: 'Clicks in the last 30 days',
-          backgroundColor: 'rgb(0, 0, 10)',
-          borderColor: 'rgb(50, 242, 129)',
-          data: [0, 10, 5, 2, 20, 30, 45],
-        }]
-      };
-
-      const config = {
-        type: 'line',
-        data,
-        options: {}
-      };
-
-      var chart = new Chart(document.getElementById('myChart'), config);
-}
 
 // DOM event handlers
 
@@ -131,7 +48,7 @@ function shareOnTwitter(hook, event) {
             const twitterShareLink = shareTwitter({
                 text: 'Checkout my awesome shortlink',
                 url: url,
-              })
+            })
             const newTab = window.open(twitterShareLink);
         }
     }
