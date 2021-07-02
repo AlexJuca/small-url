@@ -49,21 +49,4 @@
         %>
       </div>
     </div>
-
-    <div class="mt-10 bg-white max-w-full w-full p-10 rounded-md shadow">
-      <h1 class="text-black mb-5 font-bold">Last 30 days</h1>
-      <div class="p-4 max-w-full overflow-y-auto tiny-scrollbar">
-        <%= 
-          spec = Vl.new(width: 600, height: 400)
-            |> Vl.data_from_values(@click_frequencies)
-            |> Vl.mark(:bar)
-            |> Vl.encode_field(:x, "month", field: "month", type: :nominal, title: "days")
-            |> Vl.encode_field(:y, "clicks", field: "clicks",  type: :quantitative, title: "Number of clicks in the last 30 days")
-            |> Vl.to_spec
-
-            live_component(SmallUrlWeb.Output.VegaLiteStaticComponent, id: id(), spec: spec)
-        %>
-      </div>
-    </div>
-
 </section>
