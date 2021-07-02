@@ -38,8 +38,13 @@ defmodule SmallUrl.Links do
   """
   def get_short_links!(id), do: Repo.get!(ShortLinks, id)
 
-  def get_short_links_by_key(key) do
+  def get_short_link_by_key(key) do
     query = from s in ShortLinks, where: s.key == ^key
+    Repo.one(query)
+  end
+
+  def get_short_link_by_key_and_preload_clicks(key) do
+    query = from s in ShortLinks, where: s.key == ^key, preload: [:clicks]
     Repo.one(query)
   end
 
