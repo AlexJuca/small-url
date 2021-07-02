@@ -5,7 +5,7 @@ defmodule SmallUrlWeb.ShortLinkController do
   alias SmallUrl.Repo
 
   def redirect_to_original_url(conn, %{"key" => key}) do
-    shortlink = Links.get_short_links_by_key(key)
+    shortlink = Links.get_short_link_by_key(key)
 
     case shortlink do
       nil ->
@@ -25,10 +25,10 @@ defmodule SmallUrlWeb.ShortLinkController do
   end
 
   def show_link_analytics(conn, %{"key" => key}) do
-    case Links.get_short_links_by_key(key) do
-      %ShortLinks{} = shortlink ->
+    case Links.get_short_link_by_key(key) do
+      %ShortLinks{} = _ ->
         conn
-        |> gather_stats(shortlink)
+        |> gather_stats(key)
 
       nil ->
         conn
@@ -36,27 +36,11 @@ defmodule SmallUrlWeb.ShortLinkController do
     end
   end
 
-  def gather_stats(conn, shortlink) do
-    shortlink = SmallUrl.Repo.preload(shortlink, :clicks)
-    clicks = Map.get(shortlink, :clicks)
-    number_of_clicks = Enum.count(clicks)
-
-    last_click_date =
-      Enum.map(clicks, fn click -> Map.get(click, :click_date) end) |> Enum.sort() |> Enum.at(0)
-
-    clicks_from_last_30_days =
-      Links.clicks_from_last_30_days(shortlink.key)
-      |> Enum.map(fn click -> Map.get(click, :click_date) end)
-
-    link_info = %{
-      :clicks => number_of_clicks,
-      :last_click_date => last_click_date,
-      :last_30_days => clicks_from_last_30_days
-    }
-
+  def gather_stats(conn, key) do
+    stats = SmallUrl.Stats.Click.gather_stats(key)
     conn
     |> put_view(SmallUrlWeb.LinkAnalyticsView)
-    |> render("analytics.json", link_info: link_info)
+    |> render("analytics.json", link_info: stats)
   end
 
   defp register_click(%ShortLinks{} = link) do
@@ -78,7 +62,7 @@ defmodule SmallUrlWeb.ShortLinkController do
 
   def broadcast({:error, _reason} = error, _event), do: error
 
-  def broadcast(click, _) do
+  def broadcast(click, event) do
     Phoenix.PubSub.broadcast(SmallUrl.PubSub, "click", %{event: click})
     {:ok, click}
   end
