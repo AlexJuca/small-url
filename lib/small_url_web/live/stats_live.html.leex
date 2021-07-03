@@ -45,7 +45,7 @@
             |> Vl.encode_field(:y, "clicks", field: "clicks",  type: :quantitative, title: "Number of clicks in the last 30 days")
             |> Vl.to_spec
 
-            live_component(SmallUrlWeb.Output.VegaLiteStaticComponent, id: id(), spec: spec)
+            live_component(SmallUrlWeb.Output.VegaLiteStaticComponent, id: 10, spec: spec)
         %>
       </div>
     </div>
