@@ -21,12 +21,15 @@ defmodule SmallUrl.Stats.Click do
 
   def get_last_click_date(shortlink) do
     clicks = Map.get(shortlink, :clicks)
-    Enum.map(clicks, fn click -> Map.get(click, :click_date) end) |> Enum.sort(:desc) |> Enum.at(0)
+
+    Enum.map(clicks, fn click -> Map.get(click, :click_date) end)
+    |> Enum.sort(:desc)
+    |> Enum.at(0)
   end
 
   def get_number_of_clicks(shortlink) do
     Map.get(shortlink, :clicks)
-      |> Enum.count()
+    |> Enum.count()
   end
 
   def get_click_frequencies_for_last_30_days(link_key) do
