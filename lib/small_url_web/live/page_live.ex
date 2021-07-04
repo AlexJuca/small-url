@@ -10,8 +10,6 @@ defmodule SmallUrlWeb.PageLive do
     {:ok, assign(socket, query: "", results: %{}, short_links: short_links)}
   end
 
-  defp validate_url(url), do: String.match?(url, @url_regex)
-
   @impl true
   def handle_event("shorten_url", %{"q" => query}, socket) do
     key = LinkHelpers.generate_key()
