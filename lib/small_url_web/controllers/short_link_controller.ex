@@ -63,7 +63,7 @@ defmodule SmallUrlWeb.ShortLinkController do
 
   def broadcast({:error, _reason} = error, _event), do: error
 
-  def broadcast(click, event) do
+  def broadcast(click, _event) do
     Phoenix.PubSub.broadcast(SmallUrl.PubSub, "click", %{event: click})
     {:ok, click}
   end
