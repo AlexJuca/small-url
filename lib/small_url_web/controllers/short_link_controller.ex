@@ -38,6 +38,7 @@ defmodule SmallUrlWeb.ShortLinkController do
 
   def gather_stats(conn, key) do
     stats = SmallUrl.Stats.Click.gather_stats(key)
+
     conn
     |> put_view(SmallUrlWeb.LinkAnalyticsView)
     |> render("analytics.json", link_info: stats)
