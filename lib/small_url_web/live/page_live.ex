@@ -11,13 +11,6 @@ defmodule SmallUrlWeb.PageLive do
   end
 
   @impl true
-  def handle_event("validate", %{"q" => query}, socket) do
-    {:noreply, socket}
-  end
-
-  defp validate_url(url), do: String.match?(url, @url_regex)
-
-  @impl true
   def handle_event("shorten_url", %{"q" => query}, socket) do
     key = LinkHelpers.generate_key()
     expiration_date = LinkHelpers.generate_expiration_date()
@@ -36,5 +29,6 @@ defmodule SmallUrlWeb.PageLive do
     end
   end
 
+  @impl true
   def handle_params(_params, _url, socket), do: {:noreply, socket}
 end
