@@ -40,8 +40,7 @@ defmodule SmallUrl.Stats.Click do
     dates =
       Enum.map(clicks_from_last_30_days, fn date -> date |> Calendar.strftime("%B %-d, %Y") end)
 
-    frequencies =
-      Enum.frequencies(dates)
-      |> Enum.map(fn f -> Map.put(%{:month => elem(f, 0)}, "clicks", elem(f, 1)) end)
+    Enum.frequencies(dates)
+    |> Enum.map(fn f -> Map.put(%{:month => elem(f, 0)}, "clicks", elem(f, 1)) end)
   end
 end
