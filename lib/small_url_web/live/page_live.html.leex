@@ -18,7 +18,7 @@
           phx-click="lv:clear-flash"
           phx-value-key="error"><%= live_flash(@flash, :error) %></p>
       </div>
-      <form phx-change="validate" phx-submit="shorten_url">
+      <form phx-submit="shorten_url">
         <input class="w-96 p-3 mr-2 rounded-md bg-white focus:outline-none focus:border-gray-700" type="text" name="q" value="<%= @query %>" placeholder="Enter link here" autocomplete="off"/>
         <button class="w-60 p-3 shadow-md rounded-md bg-indigo-500 text-white font-bold hover:bg-indigo-700 focus:outline-none" type="submit" phx-disable-with="Generating...">Shorten</button>
       </form>

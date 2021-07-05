@@ -54,17 +54,22 @@ defmodule SmallUrlWeb.ShortLinkController do
     click = Ecto.build_assoc(link, :clicks, attrs)
 
     Repo.insert!(click)
-    |> broadcast(:click_created)
+    |> broadcast(:short_link_clicked)
   end
 
-  def subscribe do
-    Phoenix.PubSub.subscribe(SmallUrl.PubSub, "click")
+  def subscribe(key) do
+    Phoenix.PubSub.subscribe(SmallUrl.PubSub, "short_link:#{key}")
   end
+
+  # def subscribe do
+  #   Phoenix.PubSub.subscribe(SmallUrl.PubSub, "short_link")
+  # end
 
   def broadcast({:error, _reason} = error, _event), do: error
 
   def broadcast(click, _event) do
-    Phoenix.PubSub.broadcast(SmallUrl.PubSub, "click", %{event: click})
+    key = Map.get(click, :key)
+    Phoenix.PubSub.broadcast(SmallUrl.PubSub, "short_link:#{key}", %{event: click})
     {:ok, click}
   end
 end
