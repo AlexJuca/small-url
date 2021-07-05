@@ -5,7 +5,7 @@ defmodule SmallUrlWeb.StatsLive do
 
   @impl true
   def mount(%{"key" => key} = _params, _session, socket) do
-    if connected?(socket), do: SmallUrlWeb.ShortLinkController.subscribe()
+    if connected?(socket), do: SmallUrlWeb.ShortLinkController.subscribe(key)
 
     shortlink = Links.get_short_link_by_key(key)
 
