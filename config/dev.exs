@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :small_url, SmallUrl.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("PG_USERNAME"),
+  password: System.get_env("PG_PASSWORD"),
   database: "small_url_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
