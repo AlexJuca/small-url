@@ -21,10 +21,11 @@ config :logger, level: :info
 # To get SSL working, you will need to add the `https` key
 # to the previous section and set your `:url` port to 443:
 #
-     config :small_url, SmallUrlWeb.Endpoint,
-       http: [port: {:system, "PORT"}],
-       url: [host: "vast-scrubland-75611.herokuapp.com", port: 443],
-       force_ssl: [rewrite_on: [:x_forwarded_proto]]
+config :small_url, SmallUrlWeb.Endpoint,
+  http: [port: {:system, "PORT"}],
+  url: [host: "vast-scrubland-75611.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]]
+
 #       https: [
 #         port: 443,
 #         cipher_suite: :strong,
